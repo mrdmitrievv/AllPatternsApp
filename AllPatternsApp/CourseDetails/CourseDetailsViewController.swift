@@ -24,22 +24,22 @@ class CourseDetailsViewController: UIViewController {
     }
     
     private func setupUI() {    
-        setColorForFavoriteButton()
+        setColorForFavoriteButton(with: viewModel.isFavorite.value)
+        viewModel.isFavorite.bind { [unowned self] isFavorite in
+            setColorForFavoriteButton(with: isFavorite)
+        }
         courseName.text = viewModel.courseName
         numberOfLessons.text = viewModel.numberOfLessons
         numberOfTests.text = viewModel.numberOfTests
         guard let imageData = viewModel.imageData else { return }
         courseImage.image = UIImage(data: imageData)
-        viewModel.viewModelDidChange = { [unowned self] viewModel in
-            setColorForFavoriteButton()
-        }
     }
     
     @IBAction func favoriteButtonPressed(_ sender: Any) {
         viewModel.favoriteButtonPressed()
     }
     
-    private func setColorForFavoriteButton() {
-        favoriteButton.tintColor = viewModel.isFavorite ? .red : .gray
+    private func setColorForFavoriteButton(with status: Bool) {
+        favoriteButton.tintColor = status ? .red : .gray
     }
 }
