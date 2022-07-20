@@ -18,11 +18,8 @@ class CourseDetailsViewController: UIViewController {
     
     var viewModel: CourseDetailsViewModelProtocol!
     
-    var course: Course!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = CourseDetailsViewModel(course: course)
         setupUI()
     }
     
