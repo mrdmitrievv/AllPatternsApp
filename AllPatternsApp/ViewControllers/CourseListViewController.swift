@@ -10,12 +10,25 @@ import UIKit
 class CourseListViewController: UIViewController {
     
     @IBOutlet weak var CourseList: UITableView!
-    private var courses: [Course] = []
+    
+    private var courses: [Course] = [] {
+        didSet {
+            spinner.stopAnimating()
+        }
+    }
+    
+    private var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         CourseList.rowHeight = 100
+        setupActivityIndicator(in: view)
         getCourses()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let courseDetailsVC = segue.destination as! CourseDetailsViewController
+        courseDetailsVC.course = sender as? Course
     }
     
     private func getCourses() {
@@ -27,9 +40,14 @@ class CourseListViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let courseDetailsVC = segue.destination as! CourseDetailsViewController
-        courseDetailsVC.course = sender as? Course
+    private func setupActivityIndicator(in view: UIView) {
+        spinner = UIActivityIndicatorView(style: .large)
+        spinner.hidesWhenStopped = true
+        spinner.color = .black
+        spinner.center = view.center
+        spinner.startAnimating()
+        
+        view.addSubview(spinner)
     }
 }
 
