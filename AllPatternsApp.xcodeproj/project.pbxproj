@@ -20,6 +20,8 @@
 		AB663BEE28870F1600E62F31 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB663BED28870F1600E62F31 /* CourseTableViewCell.swift */; };
 		AB663BF02887463200E62F31 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB663BEF2887463200E62F31 /* DataManager.swift */; };
 		AB7612562887FD1A00EC843B /* CourseDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7612552887FD1A00EC843B /* CourseDetailsViewModel.swift */; };
+		AB76125928882C7D00EC843B /* CourseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB76125828882C7D00EC843B /* CourseListViewModel.swift */; };
+		AB76125B28882DAA00EC843B /* CourseTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB76125A28882DAA00EC843B /* CourseTableViewCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		AB663BED28870F1600E62F31 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
 		AB663BEF2887463200E62F31 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		AB7612552887FD1A00EC843B /* CourseDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewModel.swift; sourceTree = "<group>"; };
+		AB76125828882C7D00EC843B /* CourseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListViewModel.swift; sourceTree = "<group>"; };
+		AB76125A28882DAA00EC843B /* CourseTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,9 +74,8 @@
 		AB663BC9288703C600E62F31 /* AllPatternsApp */ = {
 			isa = PBXGroup;
 			children = (
-				AB663BE32887086400E62F31 /* ViewControllers */,
+				AB76125728882C6200EC843B /* CourseList */,
 				AB7612542887FCF600EC843B /* CourseDetails */,
-				AB663BEC28870EFE00E62F31 /* Views */,
 				AB663BE62887089600E62F31 /* Models */,
 				AB663BE92887095400E62F31 /* Services */,
 				AB663BDE288704C700E62F31 /* Storyboards */,
@@ -109,14 +112,6 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		AB663BE32887086400E62F31 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				AB663BCE288703C600E62F31 /* CourseListViewController.swift */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
 		AB663BE62887089600E62F31 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,12 +130,13 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		AB663BEC28870EFE00E62F31 /* Views */ = {
+		AB663BEC28870EFE00E62F31 /* CourseTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				AB663BED28870F1600E62F31 /* CourseTableViewCell.swift */,
+				AB76125A28882DAA00EC843B /* CourseTableViewCellViewModel.swift */,
 			);
-			path = Views;
+			path = CourseTableViewCell;
 			sourceTree = "<group>";
 		};
 		AB7612542887FCF600EC843B /* CourseDetails */ = {
@@ -150,6 +146,16 @@
 				AB7612552887FD1A00EC843B /* CourseDetailsViewModel.swift */,
 			);
 			path = CourseDetails;
+			sourceTree = "<group>";
+		};
+		AB76125728882C6200EC843B /* CourseList */ = {
+			isa = PBXGroup;
+			children = (
+				AB663BEC28870EFE00E62F31 /* CourseTableViewCell */,
+				AB663BCE288703C600E62F31 /* CourseListViewController.swift */,
+				AB76125828882C7D00EC843B /* CourseListViewModel.swift */,
+			);
+			path = CourseList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,8 +233,10 @@
 				AB663BE82887094B00E62F31 /* NetworkManager.swift in Sources */,
 				AB663BCF288703C600E62F31 /* CourseListViewController.swift in Sources */,
 				AB663BEB28870DE200E62F31 /* ImageManager.swift in Sources */,
+				AB76125B28882DAA00EC843B /* CourseTableViewCellViewModel.swift in Sources */,
 				AB663BCB288703C600E62F31 /* AppDelegate.swift in Sources */,
 				AB663BE52887089100E62F31 /* Course.swift in Sources */,
+				AB76125928882C7D00EC843B /* CourseListViewModel.swift in Sources */,
 				AB663BE22887085800E62F31 /* CourseDetailsViewController.swift in Sources */,
 				AB663BF02887463200E62F31 /* DataManager.swift in Sources */,
 				AB663BCD288703C600E62F31 /* SceneDelegate.swift in Sources */,
