@@ -16,31 +16,33 @@ class CourseDetailsViewController: UIViewController {
     
     @IBOutlet weak var favoriteButton: UIButton!
     
-    private var isFavorite: Bool = false {
-        didSet {
-            favoriteButton.tintColor = isFavorite ? .red : .gray
-        }
-    }
+    var viewModel: CourseDetailsViewModelProtocol!
     
     var course: Course!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = CourseDetailsViewModel(course: course)
         setupUI()
     }
     
     private func setupUI() {    
-        courseName.text = course.name
-        numberOfLessons.text = "Number of lessons: \(course.numberOfLessons)"
-        numberOfTests.text = "Number of tests: \(course.numberOfTests)"
-        guard let imageData = ImageManager.shared.fetchImage(from: course.imageUrl) else { return }
+        setColorForFavoriteButton()
+        courseName.text = viewModel.courseName
+        numberOfLessons.text = viewModel.numberOfLessons
+        numberOfTests.text = viewModel.numberOfTests
+        guard let imageData = viewModel.imageData else { return }
         courseImage.image = UIImage(data: imageData)
-        isFavorite = DataManager.shared.getFavoriteStatus(for: course.name)
+        viewModel.viewModelDidChange = { [unowned self] viewModel in
+            setColorForFavoriteButton()
+        }
     }
     
     @IBAction func favoriteButtonPressed(_ sender: Any) {
-        isFavorite.toggle()
-        DataManager.shared.setFavoriteStatus(for: course.name, with: isFavorite)
+        viewModel.favoriteButtonPressed()
     }
     
+    private func setColorForFavoriteButton() {
+        favoriteButton.tintColor = viewModel.isFavorite ? .red : .gray
+    }
 }
