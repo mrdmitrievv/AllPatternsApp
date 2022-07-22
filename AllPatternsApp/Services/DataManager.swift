@@ -14,6 +14,8 @@ class DataManager {
     
     private var userDefaults = UserDefaults()
     
+    private var courses: [Course] = []
+    
     func getFavoriteStatus(for courseName: String) -> Bool {
         let isFavorite = userDefaults.bool(forKey: courseName)
         return isFavorite
@@ -21,5 +23,13 @@ class DataManager {
     
     func setFavoriteStatus(for courseName: String, with status: Bool) {
         userDefaults.setValue(status, forKey: courseName)
+    }
+    
+    func setCourses(_ courses: [Course]) {
+        self.courses = courses
+    }
+    
+    func getCourse(at indexPath: IndexPath) -> Course {
+        return courses[indexPath.row]
     }
 }

@@ -28,6 +28,7 @@ class NetworkManager {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let courses = try decoder.decode([Course].self, from: data)
+                DataManager.shared.setCourses(courses)
                 DispatchQueue.main.async {
                     completion(courses)
                 }
