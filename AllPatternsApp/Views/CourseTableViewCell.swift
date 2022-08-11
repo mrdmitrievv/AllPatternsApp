@@ -7,11 +7,22 @@
 
 import UIKit
 
-class CourseTableViewCell: UITableViewCell {
-    func configure(with course: Course) {
+protocol cellModelRepresentable {
+    var cellModel: CellIdentifiable? { get set }
+}
+
+class CourseTableViewCell: UITableViewCell, cellModelRepresentable {
+    var cellModel: CellIdentifiable? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    func updateViews() {
+        guard let cellModel = cellModel as? cellViewModel else { return }
         var content = defaultContentConfiguration()
-        content.text = course.name
-        guard let imageData = ImageManager.shared.fetchImage(from: course.imageUrl) else { return }
+        content.text = cellModel.name
+        guard let imageData = ImageManager.shared.fetchImage(from: cellModel.imageUrl) else { return }
         content.image = UIImage(data: imageData)
         contentConfiguration = content
     }

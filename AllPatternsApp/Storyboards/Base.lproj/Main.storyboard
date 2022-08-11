@@ -27,6 +27,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="MRW-Cg-6dh" kind="show" identifier="CourseDetails" id="dAI-g2-H2s"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -47,7 +50,6 @@
                     <navigationItem key="navigationItem" title="Swiftbook Courses" id="gS7-DL-pw6"/>
                     <connections>
                         <outlet property="CourseList" destination="OXs-zo-v3t" id="vws-hM-Jlm"/>
-                        <segue destination="MRW-Cg-6dh" kind="show" identifier="ShowCourseDetails" id="7IX-2c-lrF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
