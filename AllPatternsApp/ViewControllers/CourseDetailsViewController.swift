@@ -33,8 +33,11 @@ class CourseDetailsViewController: UIViewController {
         courseName.text = course.name
         numberOfLessons.text = "Number of lessons: \(course.numberOfLessons)"
         numberOfTests.text = "Number of tests: \(course.numberOfTests)"
-        ImageManager.shared.fetchImage(from: course.imageUrl) { image in
-            self.courseImage.image = image
+        ImageManager.shared.fetchImage(from: course.imageUrl) { data in
+            guard let imageData = data else { return }
+            DispatchQueue.main.async {        
+                self.courseImage.image = UIImage(data: imageData)
+            }
         }
         isFavorite = DataManager.shared.getFavoriteStatus(for: course.name)
     }

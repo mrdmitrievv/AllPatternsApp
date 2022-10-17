@@ -12,9 +12,12 @@ class CourseTableViewCell: UITableViewCell {
         var content = defaultContentConfiguration()
         content.text = course.name
         
-        ImageManager.shared.fetchImage(from: course.imageUrl, completion: { image in
-            content.image = image
-            self.contentConfiguration = content
-        })        
+        ImageManager.shared.fetchImage(from: course.imageUrl, completion: { data in
+            guard let imageData = data else { return }
+            DispatchQueue.main.async {
+                content.image = UIImage(data: imageData)
+                self.contentConfiguration = content
+            }            
+        })
     }
 }
