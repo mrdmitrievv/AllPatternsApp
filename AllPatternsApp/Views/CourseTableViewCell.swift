@@ -11,8 +11,10 @@ class CourseTableViewCell: UITableViewCell {
     func configure(with course: Course) {
         var content = defaultContentConfiguration()
         content.text = course.name
-        guard let imageData = ImageManager.shared.fetchImage(from: course.imageUrl) else { return }
-        content.image = UIImage(data: imageData)
-        contentConfiguration = content
+        
+        ImageManager.shared.fetchImage(from: course.imageUrl, completion: { image in
+            content.image = image
+            self.contentConfiguration = content
+        })        
     }
 }

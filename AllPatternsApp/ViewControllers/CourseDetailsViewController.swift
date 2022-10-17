@@ -33,8 +33,9 @@ class CourseDetailsViewController: UIViewController {
         courseName.text = course.name
         numberOfLessons.text = "Number of lessons: \(course.numberOfLessons)"
         numberOfTests.text = "Number of tests: \(course.numberOfTests)"
-        guard let imageData = ImageManager.shared.fetchImage(from: course.imageUrl) else { return }
-        courseImage.image = UIImage(data: imageData)
+        ImageManager.shared.fetchImage(from: course.imageUrl) { image in
+            self.courseImage.image = image
+        }
         isFavorite = DataManager.shared.getFavoriteStatus(for: course.name)
     }
     

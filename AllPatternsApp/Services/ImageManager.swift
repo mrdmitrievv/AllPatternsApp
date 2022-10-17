@@ -5,16 +5,22 @@
 //  Created by Артём Дмитриев on 19.07.2022.
 //
 
-import Foundation
+import UIKit
 
 class ImageManager {
     static let shared = ImageManager()
     
     private init() {}
     
-    func fetchImage(from url: URL?) -> Data? {
-        guard let url = url else { return nil }
-        guard let imageData = try? Data(contentsOf: url) else { return nil }
-        return imageData
+    func fetchImage(from url: URL?, completion: @escaping (UIImage?) -> Void) {
+        guard let url = url else { return completion(nil) }
+       
+        URLSession.shared.dataTask(with: url) { data, _, _ in
+            guard let imageData = data else { return }
+            DispatchQueue.main.async {
+                let image = UIImage(data: imageData)
+                completion(image)
+            }
+        }.resume()
     }
 }
