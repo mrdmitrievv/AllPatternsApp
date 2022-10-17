@@ -15,17 +15,28 @@ class ImageManager {
     
     func fetchImage(from url: URL?, completion: @escaping (Data?) -> Void) {
         guard let url = url else { return completion(nil) }
-        
-        // MARK: - WorkItem, downloading works slower than URLSession
-        var data: Data?
         let queue = DispatchQueue.global(qos: .utility)
+        var data: Data?
+        
+        // MARK: - DispatchGroup
+        let dispatchGroup = DispatchGroup()
+        queue.async {
+            dispatchGroup.enter()
+            data = try? Data(contentsOf: url)
+            completion(data)
+            dispatchGroup.leave()
+        }
+        
+        /*
+        // MARK: - WorkItem, downloading works slower than URLSession
         let workItem = DispatchWorkItem(qos: .utility) {
             data = try? Data(contentsOf: url)
             completion(data)
         }
         
         queue.async(execute: workItem)
-        
+        */
+         
         /*
         // MARK: - URLSession
          
