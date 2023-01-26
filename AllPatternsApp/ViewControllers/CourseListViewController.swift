@@ -34,9 +34,7 @@ class CourseListViewController: UIViewController {
     private func getCourses() {
         NetworkManager.shared.fetchData { [unowned self] courses in
             self.courses = courses
-            DispatchQueue.main.async {
-                self.CourseList.reloadData()
-            }
+            self.CourseList.reloadData()
         }
     }
     
